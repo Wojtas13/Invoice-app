@@ -1,0 +1,35 @@
+<div class="conatainer">
+    <h1>List of Clients</h1>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">NIP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ lp }}</th>
+            <td>Mike</td>
+            <td>Otto</td>
+            <td>100-30-14-132</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>113-111</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>311-000</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<a class="btn text-white btn-dark" [routerLink]="['/clients/new-client']">Add new client <fa-icon [icon]="faPlus"></fa-icon></a>
+

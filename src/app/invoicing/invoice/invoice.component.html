@@ -1,0 +1,14 @@
+<!-- Client and Date/Number component -->
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3>Client</h3>
+        </div>    
+        <div class="col-6">
+            <h3>Date/Number</h3>
+        </div>
+    </div>
+</div>
+<app-invoice-positions [positions]=invoice.items (itemsChanged)=updateItems($event)></app-invoice-positions>
+<app-summary [summary]=invoiceSummary></app-summary>
+

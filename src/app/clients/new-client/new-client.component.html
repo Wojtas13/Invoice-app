@@ -1,0 +1,65 @@
+<form #clientForm="ngForm" (ngSubmit)="createClient(clientForm)">
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+
+        <label for="firstName">First name</label>
+        <input
+          id="firstName"
+          name="firstName"
+          ngModel
+          #firstName="ngModel"
+          type="text"
+          class="form-control"
+          placeholder="First name"
+          required
+          minlength="2"
+          maxlength="13"/>
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+            First name is required.
+        </div> 
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <label for="lastName">Last name</label>
+        <input
+          id="lastName"
+          name="lastName"
+          ngModel
+          #lastName="ngModel"            
+          type="text"
+          class="form-control"
+          placeholder="Last name"
+          required>
+        <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+          Last name is required.
+        </div>
+      </div>  
+    </div>    
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <label for="taxNumber">Tax number</label>
+        <input
+          id="taxNumber"
+          name="Tax"
+          ngModel
+          #tax="ngModel"
+          type="text"
+          class="form-control"
+          placeholder="Tax number"
+          maxlength="9"
+          required>
+        <div class="alert alert-danger" *ngIf="tax.touched && !tax.valid">
+          Tax number is required.
+        </div>
+      </div>
+    </div>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      >
+      Submit
+    </button>
+  </form>
+  [routerLink]="['/clients']"
+  {{ clientForm.value | json }}
