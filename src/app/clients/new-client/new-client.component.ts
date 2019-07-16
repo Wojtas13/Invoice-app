@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Client } from 'src/app/invoicing/model/item';
+import { Client } from '../model/client';
 
 @Component({
   selector: 'app-new-client',
@@ -8,14 +8,12 @@ import { Client } from 'src/app/invoicing/model/item';
   styleUrls: ['./new-client.component.scss']
 })
 export class NewClientComponent implements OnInit {
-  @Input()
-  private client: Client;
-
+  clientModel = new Client('Mike', 'Johnson', '300-12-12-32');
   constructor() {}
   ngOnInit() {
   }
 
   createClient(clientForm: NgForm): void {
-    
+    console.log(clientForm);
   }
 }

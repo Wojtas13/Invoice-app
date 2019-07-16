@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { InvoiceItem, Unit, Tax } from '../model/item';
-import { PriceCalculator, ItemPrice } from '../model/price-calculator/price-calculator';
+import { PriceCalculator, ItemPrice, CalcRequest } from '../model/price-calculator/price-calculator';
 import { ItemCatalog } from '../model/item-catalog/item-catalog';
 import { Item } from '../model/item-catalog/item';
 import { Subject } from 'rxjs';
-import { debounceTime, switchMap, tap, map, retry, filter } from 'rxjs/operators';
+import { debounceTime, switchMap, tap, map, retry, filter, delay } from 'rxjs/operators';
 
 interface ItemSuggestion {
   name: string;
@@ -47,6 +47,7 @@ export class SinglePositionComponent implements OnInit {
   @Output()
   private positionChanged: EventEmitter<InvoiceItem> = new EventEmitter<InvoiceItem>();
 
+  private calcRequest: CalcRequest;
   private searchQuery = new Subject<string>();
   private searchResult = this.searchQuery.pipe(
     debounceTime(this.WAIT_TIME_BEFORE_SEARCH),

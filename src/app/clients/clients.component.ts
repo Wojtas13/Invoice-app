@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ClientsItemFactory, FormItem } from './model/client';
+import { Client } from './model/client';
 
 
 @Component({
@@ -8,17 +8,5 @@ import { ClientsItemFactory, FormItem } from './model/client';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
-  
-  private clientsItemFactory: ClientsItemFactory;
-  private formItems: FormItem[];
-
-
-
-  constructor() {
-    this.clientsItemFactory = new ClientsItemFactory();
-   }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
