@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Client } from '../model/client';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Client } from '../clientModel/client';
+import { ClientService } from '../service/client-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-client',
@@ -8,12 +10,56 @@ import { Client } from '../model/client';
   styleUrls: ['./new-client.component.scss']
 })
 export class NewClientComponent implements OnInit {
-  clientModel = new Client('Mike', 'Johnson', '300-12-12-32');
-  constructor() {}
-  ngOnInit() {
+
+  get firstName() {
+    return this.clientForm.get('firstName');
+  }
+  get lastName() {
+    return this.clientForm.get('lastName');
+  }
+  get tax() {
+    return this.clientForm.get('taxNumber');
+  }
+  clientForm = this.fb.group({
+    firstName: [
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(13),
+        Validators.pattern('^[A-Za-z]+$')
+      ])
+    ],
+    lastName: [
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(13),
+        Validators.pattern('^[A-Za-z]+$')
+      ])
+    ],
+    taxNumber: [
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.minLength(9),
+        Validators.maxLength(9),
+        Validators.pattern('^[0-9]+$')
+      ])
+    ]
+  });
+
+  clientService: ClientService;
+  constructor(private fb: FormBuilder, clientService: ClientService, private router: Router) {
+    this.clientService = clientService;
   }
 
-  createClient(clientForm: NgForm): void {
-    console.log(clientForm);
+  ngOnInit() {}
+
+  handleSubmit(event: Event) {
+    event.preventDefault();
+    this.clientService.clients.push(this.clientForm.value);
+    this.router.navigate(['/clients']);
   }
 }
