@@ -8,7 +8,8 @@ import { InvoiceItem } from '../model/item';
   styleUrls: ['./summary.component.scss']
 })
 export class SummaryComponent {
-  invoiceItem: InvoiceItem;
+  @Input()
+  summary: InvoiceSummary;
 
   displayCommas(price: InvoiceSummary): string {
     const parts = price.toString().split('.');
