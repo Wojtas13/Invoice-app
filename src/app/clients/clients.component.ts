@@ -12,7 +12,10 @@ export class ClientsComponent implements OnInit {
   faPlus = faPlus;
 
   private clientService: ClientService;
+  @Input()
   private clients: Client[];
+  @Output()
+  removeItem: EventEmitter<Client[]> = new EventEmitter();
 
   constructor(clientService: ClientService) {
     this.clientService = clientService;
@@ -20,8 +23,10 @@ export class ClientsComponent implements OnInit {
   }
   ngOnInit() {}
 
-  removeClient(client: Client) {
-    this.clients.filter(c => c.id !== client.id);
+  removeClient(client: Client): void {
+    this.clients = this.clients.filter(c => c.id !== client.id);
+    this.removeItem.next(this.clients);
     this.clientService.clients = this.clients;
   }
+
 }

@@ -17,14 +17,11 @@ export interface InvoiceSummary {
     tax: number;
 }
 
-export interface Client {
-    name: string;
-    taxNumber: string;
+export class Summary {
+    summary: InvoiceSummary[];
 }
 
 export interface Invoice {
-    client?: Client;
-    saleDate: Date;
     items: InvoiceItem[];
 }
 

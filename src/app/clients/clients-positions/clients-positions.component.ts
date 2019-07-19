@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Client } from '../../invoicing/model/item';
-import { HttpClient } from '@angular/common/http';
+import { Client } from '../clientModel/client';
+
 
 @Component({
   selector: '[app-clients-positions]',
@@ -13,17 +13,17 @@ export class ClientsPositionsComponent implements OnInit {
 
   constructor() {}
   @Input()
-  private client: Client[];
+  private clients: Client[];
+  @Input()
+  private client: Client;
   @Input()
   private lp: number;
-  @Input()
-  private itemRemoved: EventEmitter<Client[]> = new EventEmitter<Client[]>();
+  @Output()
+  private removeItem: EventEmitter<Client> = new EventEmitter<Client>();
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   removeClient(): void {
-    this.itemRemoved.next(this.client);
+    this.removeItem.next(this.client);
   }
 }

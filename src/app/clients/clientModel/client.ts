@@ -3,6 +3,7 @@ export interface Client {
     firstName: string;
     lastName: string;
     taxNumber: string;
+    date: Date;
 }
 
 

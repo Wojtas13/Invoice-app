@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { InvoiceItem, Unit, Tax } from '../model/item';
+import { InvoiceItem, Unit, Tax, InvoiceSummary } from '../model/item';
 import { PriceCalculator, ItemPrice, CalcRequest } from '../model/price-calculator/price-calculator';
 import { ItemCatalog } from '../model/item-catalog/item-catalog';
 import { Item } from '../model/item-catalog/item';
@@ -19,12 +19,14 @@ interface ItemSuggestion {
 })
 export class SinglePositionComponent implements OnInit {
   readonly WAIT_TIME_BEFORE_SEARCH = 400;
-  readonly MINIMAL_QUERY_LENGTH = 5;
+  readonly MINIMAL_QUERY_LENGTH = 1;
 
   faTrash = faTrash;
 
   @Input()
   private position: InvoiceItem;
+  @Input()
+  private positions: InvoiceItem[];
   @Input()
   private lp: number;
 
@@ -43,7 +45,6 @@ export class SinglePositionComponent implements OnInit {
 
   @Output()
   private itemRemoved: EventEmitter<InvoiceItem> = new EventEmitter<InvoiceItem>();
-
   @Output()
   private positionChanged: EventEmitter<InvoiceItem> = new EventEmitter<InvoiceItem>();
 
@@ -66,6 +67,7 @@ export class SinglePositionComponent implements OnInit {
 
   ngOnInit() {
     this.position.tax = Tax.t23;
+    this.position.unit = Unit.hour;
     this.searchResult.subscribe((items) => {
       this.suggestions = items;
     });
@@ -73,6 +75,7 @@ export class SinglePositionComponent implements OnInit {
 
   removePosition(): void {
     this.itemRemoved.next(this.position);
+    this.positions = this.positions.filter(p => p);
   }
 
   handleChangeNetto(): void {

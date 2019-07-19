@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Client } from '../clientModel/client';
 import { ClientService } from '../service/client-service';
 import { Router } from '@angular/router';
 

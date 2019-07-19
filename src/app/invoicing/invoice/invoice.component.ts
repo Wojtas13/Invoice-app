@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice, InvoiceSummary } from '../model/item';
+import { ClientService } from 'src/app/clients/service/client-service';
+import { Client } from 'src/app/clients/clientModel/client';
+
 
 @Component({
   selector: 'app-invoice',
@@ -10,14 +13,18 @@ export class InvoiceComponent implements OnInit {
 
   invoice: Invoice;
   invoiceSummary: InvoiceSummary;
+  clientService: ClientService;
+  clients: Client[];
 
-  constructor() { }
+  constructor(clientService: ClientService) {
+    this.clientService = clientService;
+    this.clients = this.clientService.clients;
+  }
 
   ngOnInit() {
     this.invoice = {
-      saleDate: new Date(),
       items: []
-    }
+    };
 
     this.invoiceSummary = this.recalculateSummery(this.invoice);
   }
@@ -27,10 +34,10 @@ export class InvoiceComponent implements OnInit {
     const netto = invoice.items.map(i => i.netto).reduce((sum, i) => sum + i, 0);
 
     return {
-      brutto: brutto,
-      netto: netto,
+      brutto,
+      netto,
       tax: this.round(brutto - netto, 2)
-    }
+    };
   }
 
   private round(price: number, digits: number): number {

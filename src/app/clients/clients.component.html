@@ -16,7 +16,8 @@
                     app-clients-positions
                     *ngFor="let client of clients; let index = index"
                     [client]=client
-                    [lp]=index+1>                    
+                    [lp]=index+1
+                    (removeItem)=removeClient($event)>                    
                     </tr>                      
               </tbody>
             </table>

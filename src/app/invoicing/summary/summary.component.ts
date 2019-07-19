@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { InvoiceSummary } from '../model/item';
 import { InvoiceItem } from '../model/item';
 
@@ -9,6 +9,10 @@ import { InvoiceItem } from '../model/item';
 })
 export class SummaryComponent {
   invoiceItem: InvoiceItem;
-  @Input()
-  summary: InvoiceSummary;
+
+  displayCommas(price: InvoiceSummary): string {
+    const parts = price.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
 }
