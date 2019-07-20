@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { InvoiceItem, InvoiceItemFactory, InvoiceSummary } from '../model/item';
+import { InvoiceItem, InvoiceItemFactory } from '../model/item';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

@@ -1,6 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { InvoiceSummary } from '../model/item';
-import { InvoiceItem } from '../model/item';
 
 @Component({
   selector: 'app-summary',

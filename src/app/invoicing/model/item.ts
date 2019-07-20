@@ -17,10 +17,6 @@ export interface InvoiceSummary {
     tax: number;
 }
 
-export class Summary {
-    summary: InvoiceSummary[];
-}
-
 export interface Invoice {
     items: InvoiceItem[];
 }

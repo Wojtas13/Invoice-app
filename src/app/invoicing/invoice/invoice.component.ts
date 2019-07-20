@@ -13,6 +13,7 @@ export class InvoiceComponent implements OnInit {
 
   invoice: Invoice;
   invoiceSummary: InvoiceSummary;
+
   clientService: ClientService;
   clients: Client[];
 
